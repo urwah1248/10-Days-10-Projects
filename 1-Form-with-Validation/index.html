@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>HTML Form</h1>
+        <form>
+            <fieldset>
+                <div class="form-control">
+                    <label for="fname">First Name *</label>
+                    <input type="text" name="fName" id="fName" placeholder="E.g John" >
+                    <small>Error Message</small>
+                </div>
+                <br>
+                <div class="form-control">
+                    <label for="fname">Last Name *</label>
+                    <input type="text" name="lName" id="lName" placeholder="E.g Doe"  >
+                    <small>Error Message</small>
+                </div>
+                <br>
+                <div class="form-control">
+                    <label for="fname">Email *</label>
+                    <input type="text" name="email" id="email" placeholder="E.g johndoe@email.com" >
+                    <small>Error Message</small>
+                </div>
+            </fieldset>
+            
+            <fieldset>
+                <div class="space-between">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" name="dob" id="dob">
+                </div>
+
+                <br>
+                <div class="space-between">
+                    <label for="gender">Gender</label>
+                    <select name="gender" id="gender">
+                        <option disabled selected value class="grey">Choose</option>
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div class="form-control">
+                    <label for="tof">I agree to the <a href="terms-and-conditions.html">Terms and Conditions</a> *</label>
+                    <input type="checkbox" name="tof" id="tof">
+                    <br>
+                    <small id="tofError">Error Message</small>
+                </div>
+
+                <br>
+                <div class="space-between">
+                    <label for="newsletter">Subscribe to my Newsletter</label>
+                    <input type="checkbox" name="newsletter" id="newsletter">
+                </div>
+            </fieldset>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
