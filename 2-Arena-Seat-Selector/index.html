@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arena Seat Booking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Seat Selector</h1>
+        <form>
+            <div class="event-selector">
+                <label for="venueList"> Please Pick an Event:</label>
+                <select name="events" id="events">
+                    <option value="1">Blast World Finals</option>
+                    <option value="2">IEM Cologne</option>
+                    <option value="3">PGL Major</option>
+                </select>
+            </div>
+    
+            <div class="indicators">
+                <div class="indicator">
+                    <div class="seat"></div>
+                    <span>Available</span>
+                </div>
+                <div class="indicator">
+                    <div class="seat selected"></div>
+                    <span>Selected</span>
+                </div>
+                <div class="indicator">
+                    <div class="seat occupied"></div>
+                    <span>Occupied</span>
+                </div>
+            </div>
+
+            <img src="stage.png" alt="stage">
+    
+            <fieldset id="all-seat">
+                <fieldset class="section left">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                </fieldset>
+                <fieldset class="section middle">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                </fieldset>
+                <fieldset class="section right">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                    <input type="checkbox">
+                </fieldset>
+            </fieldset>
+        </form>
+
+        <p>The Selected <span id="selected-seats">0</span> seats will cost you a price of $<span id="total-price">0</span></p>
+    </div>
+
+    <script type="module" src="index.js"></script>
+    <script type="module" src="seats.js"></script>
+</body>
+</html>
