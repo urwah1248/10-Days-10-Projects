@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        
+    <h1>Video Player</h1>
+    <!--Video Player created below-->
+    <div class="video-player">
+        <video src="https://video.twimg.com/ext_tw_video/1597900207316152320/pu/vid/1280x720/OgR2HRXrcv-lM_MR.mp4" id="video" class="video" poster="poster.jpg" autoplay muted></video>
+        <!--Controls for the video Player--> 
+        <div class="controls">
+            <div class="left">
+                <button class="btn" id="play" onclick="playPause()">
+                    <i id="play-pause-icon" class="bi bi-pause-fill"></i>
+                </button>
+                <button class="btn" id="mute-unmute" onclick="muteUnmute()">
+                    <i id="mute-unmute-icon" class="bi bi-volume-mute"></i> 
+                </button>
+                <button class="btn" id="minus10" onclick="backward()"><i class="bi bi-skip-backward-fill"></i></button>
+                <button class="btn" id="plus10" onclick="forward()"><i class="bi bi-fast-forward-fill"></i></button>
+            </div>
+            <input type="range" id="slider" min="0" max="100" value="0">
+            <span id="timer">0:00</span>
+        </div>
+    </div>
+    </div>
+    
+    <script src="index.js"></script>
+    
+</body>
+</html>
