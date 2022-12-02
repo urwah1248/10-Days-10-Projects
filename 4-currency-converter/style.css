@@ -1,0 +1,123 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgb(0, 106, 65);
+}
+h1{
+    background-color: rgb(168, 230, 207);
+    width: 100%;
+    margin: 0;
+    padding: 20px 0;
+    text-align: center;
+}
+.container{
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 600px;
+    border-radius: 20px;
+    background-color: rgb(198, 242, 226);
+    overflow: hidden;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    margin: 20px 0;
+}
+button{
+    display: block;
+    font-size: 20px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid gray;
+    border-radius: 50%;
+    background-color: white;
+}
+button:hover{
+    border: 2px solid rgb(0, 106, 65);
+    color: rgb(0, 106, 65);
+}
+button:active{
+    transition: 50ms;
+    transform: scale(0.8);
+}
+.currency{
+    display: grid;
+    width: 60%;
+    grid-template-columns: 39% 1% 60%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+    border: solid grey 1px;
+}
+.currency:hover{
+    border: solid rgb(0, 0, 0) 1px;
+}
+.currency:has(input:focus){
+    border: solid rgb(10, 146, 94) 1px;
+}
+select{
+    border: none;
+    padding: 10px 0;
+    font-size: 20px;
+}
+select:active, select:hover{
+    border: none;
+}
+input[type=number]{
+    font-size: 20px;
+    text-indent: 10px;
+    border: none;
+}
+input[type=number]:focus{
+    outline: 0;
+    border-radius: 10px 0px 0px 10px;
+}
+input:disabled{
+    background-color: white;
+    color: black;
+    cursor: text;
+}
+select:focus{
+    border-radius: 0px 10px 10px 0px;
+}
+.border{
+    width: 1px;
+    height: 80%;
+    background-color: grey;
+    margin: auto;
+}
+#rate{
+    font-family: sans-serif;
+}
+@media(max-width:650px){
+    .container{
+        margin: 0;
+        width: 100%;
+        border-radius: 0;
+        height: 100vh;
+        justify-content: start;
+    }
+    body{
+        display: block;
+    }
+    .currency{
+        width: 80%;
+    }
+    select, input[type=number]{
+        font-size: 15px;
+    }
+    
+}
+@media(max-width:350px){
+    .currency{
+        width: 90%;
+    }
+}
