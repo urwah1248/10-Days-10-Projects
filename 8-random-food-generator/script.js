@@ -10,13 +10,9 @@ form.addEventListener('submit', handleSubmit)
 randomBtn.addEventListener('click', random)
 
 searchPage.addEventListener('click', e => {
-    const mealInfo = e.path.find( item => {
-        if(item.classList) {
-            return item.classList.contains('meal-info');
-        } else {
-            return false
-        }
-    });
+
+    const mealInfo = e.target
+    console.log(mealInfo);
 
     if(mealInfo) {
         const mealID = mealInfo.getAttribute('data-mealid');
@@ -27,12 +23,10 @@ searchPage.addEventListener('click', e => {
 
 function getMealById(id){
     searchPage.classList.add('hidden')
-    console.log('called');
 
     fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772')
     .then(result => result.json())
     .then(data => {
-        console.log(data.meals[0]);
         
         let dish = data.meals[0];
         dishPage.innerHTML = `
@@ -86,10 +80,9 @@ function search(){
 
     const searchText = searchInput.value;
     if(searchText.trim()){
-        fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText.replace(/\s+/g, '-')}`)
+        fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText.replace(/\s+/g, '+')}`)
         .then(result => result.json())
         .then(data => {
-            console.log(data.meals);
             searchPage.innerHTML = data.meals.map( meal => `
                 <div class="dish">
                     <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
