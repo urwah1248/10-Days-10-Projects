@@ -11,9 +11,7 @@ form.addEventListener('submit', e => {
     handleSubmit(title.value, amount.value, true)
 })
 
-const transactions = [{amount: "123",
-description: "asd",id: 1}
-    ]
+const transactions = localStorage.getItem('transactions')
 
 function updateLocalStorage(){
     localStorage.setItem('transactions', JSON.stringify(transactions))
