@@ -1,26 +1,85 @@
-const balance = document.getElementById('balance')
-const money_plus = document.getElementById('income')
-const money_minus = document.getElementById('expense')
-const list = document.getElementById('transactions')
-const title = document.getElementById('detail')
-const amount = document.getElementById('amount')
+const balance = document.getElementById('balance');
+const money_plus =  document.getElementById('income');
+const money_minus =  document.getElementById('expense');
+const list =  document.getElementById('transactions');
 const form = document.querySelector('form')
+const description =  document.getElementById('detail');
+const amount =  document.getElementById('amount');
 
-form.addEventListener('submit', e => {
-    e.preventDefault()
-    handleSubmit(title.value, amount.value, true)
-})
+// Dummy Transactions
+// const dummyTransactions = [
+//     { id: 1, description: 'Salary', amount: 100000 },
+//     { id: 2, description: 'Electric Bill', amount: -50000 },
+//     { id: 3, description: 'Internet Bill', amount: -10000 },
+//     { id: 4, description: 'Profit', amount: 50000 }
+// ];
 
-const transactions = JSON.parse(localStorage.getItem('transactions'))
+
+
+let transactions = JSON.parse(localStorage.getItem('transactions'));
+
+// Function to generate an ID
+function generateID() {
+    return Math.floor(Math.random() * 100000000);
+}
 
 function updateLocalStorage(){
     localStorage.setItem('transactions', JSON.stringify(transactions))
 }
 
+// Add a New Transaction from the Form
+function addTransaction(e) {
+    e.preventDefault();
+
+    if( description.value.trim() === '' || amount.value.trim() === '' ) {
+        alert('Please enter a valid description and transaction amount.')
+    } else {
+        const transaction = {
+            id: generateID(),
+            description: description.value,
+            amount: +amount.value
+            };
+        
+        transactions.push(transaction);
+
+        addTransactionUI(transaction);
+        updateSums();
+
+        description.value = '';
+        amount.value = '';
+    }
+}
+
+// Function to Remove a Transaction
+function deleteTransaction(id) {
+    transactions = transactions.filter( transaction => transaction.id != id );
+    init();
+}
+
+// Function to display Transactions in Transaction History
+function addTransactionUI(transaction) {
+    // Classify if income or expense
+    const type = transaction.amount > 0 ? '+' : '-';
+
+    // Create DOM Element for List Item
+    const item = document.createElement('li');
+
+    // Add class for list item based on type
+    item.classList.add('transaction')
+    item.classList.add( transaction.amount  > 0 ? 'income' : 'expense' );
+
+    item.innerHTML = `
+        <span>${transaction.description}</span>
+        <span>${Math.abs(transaction.amount)}</span>
+    `;
+
+    list.appendChild(item);
+}
+
+// Function to update the balance, income, and expense summaries
 function updateSums() {
     // Create array of transaction amounts from transactions array
     const amounts = transactions.map( transaction => transaction.amount );
-    console.log(amounts);
     
     // Calculate total value for balance
     const total = amounts
@@ -34,7 +93,7 @@ function updateSums() {
                     .toFixed(2);
 
     // Calculate total expense
-    const expense = -amounts
+    const expense = amounts
                     .filter( amount => amount < 0 )
                     .reduce( (acc, amount) => ( acc += amount ), 0 )
                     .toFixed(2);
@@ -46,66 +105,21 @@ function updateSums() {
     money_plus.innerText = `$ ${income}`
 
     // Update Expense in DOM
-    money_minus.innerText = `$ ${expense}`
-
+    money_minus.innerText = `$ ${-expense}`
+    
     updateLocalStorage()
 }
 
+// Function to initialize the App
 function init() {
     list.innerHTML = '';
 
-    transactions.forEach(item => {
-        handleSubmit(item.description, item.amount, false)
-    });
+    transactions.forEach(addTransactionUI);
     updateSums();
 }
-init() 
-function handleSubmit(title, amount, newValue){
-    if(amount==0){
-        alert('Amount should be higher or lower than 0')
-        return
-    }
-    else if(amount>0){
-        addIncome(title, amount, newValue)
-    }
-    else if(amount<0){
-        addExpense(title, amount, newValue)
-    }
-    form.reset()
-}
 
-function addIncome(title, value, newValue){
-    list.innerHTML += `
-         <li class="transaction income">
-             <span>${title}</span>
-             <span>${value}</span>
-         </li>
-    `;
-    if(newValue){
-        transactions.push({
-            id:transactions.length +1,
-            description: title,
-            amount: value
-        })
-    }
-    else{
-        return
-    }
-    updateSums()
-}
-function addExpense(title, value, newValue){
-    list.innerHTML += `
-        <li class="transaction expense">
-            <span>${title}</span>
-            <span>${value}</span>
-        </li>
-    `
-    if(newValue){
-        transactions.push({
-            id:transactions.length +1,
-            description: title,
-            amount: value
-        })
-    }
-    updateSums()
-}
+// Event Listeners
+// 1. Event Listener for form submit
+form.addEventListener('submit', addTransaction);
+
+init();
